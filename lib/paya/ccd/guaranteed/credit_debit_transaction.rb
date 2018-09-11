@@ -1,4 +1,3 @@
-
 module Paya
   module Ccd
     module Guaranteed
