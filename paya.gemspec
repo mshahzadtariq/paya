@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Shahzad Tariq"]
   spec.email         = ["m.shahzad.tariq@hotmail.com"]
 
-  spec.summary       = %q{Ruby wrapper for Paya payment gateway integration}
-  spec.description   = %q{Ruby wrapper for Paya payment gateway integration}
-  spec.homepage      = "N/A"
+  spec.summary       = %q{Ruby wrapper for Paya ACH payment gateway integration}
+  spec.description   = %q{Ruby wrapper for Paya ACH payment gateway integration. This is developed by reading Paya documentation and is not official team of Paya}
+  spec.homepage      = "https://paya.com/"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
