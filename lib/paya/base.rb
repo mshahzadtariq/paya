@@ -3,13 +3,15 @@ module Paya
     CERTITICATION_API_END_POINT = "https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL"
     API_END_POINT = "https://getigateway.eftchecks.com/webservices/authgateway.asmx?WSDL"
 
+    attr_accessor :user_name, :password
+
     PROCESS_SINGLE_CERTIFICATION_CHECK = <<xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
 <AuthGatewayHeader xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
-<UserName>#{USER_NAME}</UserName>
-<Password>#{PASSWORD}</Password>
+<UserName>&&&USER_NAME&&&</UserName>
+<Password>&&&PASSWORD&&&</Password>
 <TerminalID>&&&TERMINAL_ID&&&</TerminalID>
 </AuthGatewayHeader>
 </soap:Header>
@@ -28,8 +30,8 @@ xml
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
 <AuthGatewayHeader xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
-<UserName>#{USER_NAME}</UserName>
-<Password>#{PASSWORD}</Password>
+<UserName>&&&USER_NAME&&&</UserName>
+<Password>&&&PASSWORD&&&</Password>
 <TerminalID>&&&TERMINAL_ID&&&</TerminalID>
 </AuthGatewayHeader>
 </soap:Header>
@@ -48,8 +50,8 @@ xml
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
 <AuthGatewayHeader xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
-<UserName>#{USER_NAME}</UserName>
-<Password>#{PASSWORD}</Password>
+<UserName>&&&USER_NAME&&&</UserName>
+<Password>&&&PASSWORD&&&</Password>
 <TerminalID>&&&TERMINAL_ID&&&</TerminalID>
 </AuthGatewayHeader>
 </soap:Header>
@@ -65,12 +67,15 @@ xml
     def initialize user_name, password
       @client = Savon.client(wsdl: API_END_POINT, headers: {UserName: user_name, Password: password})
       @certification_client = Savon.client(wsdl: CERTITICATION_API_END_POINT, headers: {UserName: user_name, Password: password})
+
+      @user_name = user_name
+      @password = password
     end
 
     def process_single_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = PROCESS_SINGLE_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id)
+      xml = PROCESS_SINGLE_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", @user_name).gsub("&&&PASSWORD", @password)
       response = @client.call(:process_single_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_check_response][:process_single_check_result])
       {request: xml, response: response}
@@ -79,7 +84,7 @@ xml
     def process_single_certification_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id)
+      xml = PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", @user_name).gsub("&&&PASSWORD", @password)
       response = @certification_client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}
@@ -88,7 +93,7 @@ xml
     def process_single_certification_check_with_token options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id)
+      xml = PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", @user_name).gsub("&&&PASSWORD", @password)
       response = @certification_client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}
@@ -96,7 +101,7 @@ xml
 
     def get_archived_response request_id
       @terminal_id = terminal_id.to_s
-      xml = GET_ARCHIVED_RESPONSE.gsub("&&&REQUEST_ID&&&", request_id).gsub("&&&TERMINAL_ID&&&", @terminal_id)
+      xml = GET_ARCHIVED_RESPONSE.gsub("&&&REQUEST_ID&&&", request_id).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", @user_name).gsub("&&&PASSWORD", @password)
       response = @client.call(:get_archived_response, xml: xml)
       response = Hash.from_xml(response.body[:get_archived_response])
       {request: xml, response: response}
