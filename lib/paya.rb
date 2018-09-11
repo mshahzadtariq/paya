@@ -1,5 +1,5 @@
 require "paya/version"
-
+require 'savon'
 module Paya
   class << self
 

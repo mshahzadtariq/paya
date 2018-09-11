@@ -65,8 +65,8 @@ xml
 </soap:Envelope>
 xml
     def initialize user_name, password
-      @client = Savon.client(wsdl: API_END_POINT, headers: {UserName: user_name, Password: password})
-      @certification_client = Savon.client(wsdl: CERTITICATION_API_END_POINT, headers: {UserName: user_name, Password: password})
+      @client = ::Savon.client(wsdl: API_END_POINT, headers: {UserName: user_name, Password: password})
+      @certification_client = ::Savon.client(wsdl: CERTITICATION_API_END_POINT, headers: {UserName: user_name, Password: password})
 
       @user_name = user_name
       @password = password
