@@ -1,7 +1,7 @@
 module Paya
   module Web
     module Guaranteed
-      class CreditDebitTransaction < Base
+      class CreditDebitTransaction
         attr_accessor :request_id, :transaction_id, :routing_number, :account_number, :account_type, :company_name, :address_1, :address_2, :city, :state, :dl_state, :dl_number, :dob_year, :zip, :phone_number, :check_amount , :identifier
 
         def initialize options={}
