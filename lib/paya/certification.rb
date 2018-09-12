@@ -1,5 +1,5 @@
 module Paya
-  class Certification
+  module Certification
 
     class << self
       def request
