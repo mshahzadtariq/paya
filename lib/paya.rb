@@ -29,14 +29,10 @@ require 'paya/web/non_guaranteed/debit_transaction'
 
 
 module Paya
-  class << self
+  CERTITICATION_API_END_POINT = "https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL"
+  API_END_POINT = "https://getigateway.eftchecks.com/webservices/authgateway.asmx?WSDL"
 
-    CERTITICATION_API_END_POINT = "https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL"
-    API_END_POINT = "https://getigateway.eftchecks.com/webservices/authgateway.asmx?WSDL"
-
-    attr_accessor :user_name, :password, :production
-
-    PROCESS_SINGLE_CERTIFICATION_CHECK = <<xml
+  PROCESS_SINGLE_CERTIFICATION_CHECK = <<xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
@@ -56,7 +52,7 @@ module Paya
 </soap:Envelope>
 xml
 
-    PROCESS_SINGLE_CHECK = <<xml
+  PROCESS_SINGLE_CHECK = <<xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
@@ -76,7 +72,7 @@ xml
 </soap:Envelope>
 xml
 
-    GET_ARCHIVED_RESPONSE = <<xml
+  GET_ARCHIVED_RESPONSE = <<xml
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <soap:Header>
@@ -95,6 +91,11 @@ xml
 </soap:Body>
 </soap:Envelope>
 xml
+
+  class << self
+
+
+    attr_accessor :user_name, :password, :production
 
     def client
       ::Savon.client(wsdl: Paya::API_END_POINT, headers: {UserName: Paya.user_name, Password: Paya.password})
