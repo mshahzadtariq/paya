@@ -98,11 +98,11 @@ xml
     attr_accessor :user_name, :password, :production
 
     def client
-      ::Savon.client(wsdl: Paya::API_END_POINT, headers: {UserName: Paya.user_name, Password: Paya.password})
+      ::Savon.client(wsdl: Paya::API_END_POINT)
     end
 
     def certification_client
-      ::Savon.client(wsdl: Paya::CERTITICATION_API_END_POINT, headers: {UserName: Paya.certification_user_name, Password: Paya.certification_password})
+      ::Savon.client(wsdl: Paya::CERTITICATION_API_END_POINT)
     end
 
     def test_mode
