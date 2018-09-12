@@ -1,5 +1,5 @@
 require 'savon'
-require 'paya/paya'
+require 'paya/base'
 
 require 'paya/certification/base'
 require 'paya/certification/ccd'
