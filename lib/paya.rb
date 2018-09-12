@@ -1,5 +1,32 @@
 require 'savon'
-Dir.glob("paya/**/*").each {|file| require file }
+require 'paya/paya'
+
+require 'paya/certification/base'
+require 'paya/certification/ccd'
+require 'paya/certification/ppd'
+require 'paya/certification/tel'
+require 'paya/certification/web'
+
+require 'paya/ccd/guaranteed/credit_debit_transaction'
+require 'paya/ccd/guaranteed/debit_transaction'
+require 'paya/ccd/guaranteed/credit_debit_transaction'
+require 'paya/ccd/guaranteed/debit_transaction'
+
+require 'paya/ppd/guaranteed/credit_debit_transaction'
+require 'paya/ppd/guaranteed/debit_transaction'
+require 'paya/ppd/guaranteed/credit_debit_transaction'
+require 'paya/ppd/guaranteed/debit_transaction'
+
+require 'paya/tel/guaranteed/credit_debit_transaction'
+require 'paya/tel/guaranteed/debit_transaction'
+require 'paya/tel/guaranteed/credit_debit_transaction'
+require 'paya/tel/guaranteed/debit_transaction'
+
+require 'paya/web/guaranteed/credit_debit_transaction'
+require 'paya/web/guaranteed/debit_transaction'
+require 'paya/web/guaranteed/credit_debit_transaction'
+require 'paya/web/guaranteed/debit_transaction'
+
 
 module Paya
   class << self
@@ -7,7 +34,7 @@ module Paya
     CERTITICATION_API_END_POINT = "https://demo.eftchecks.com/webservices/AuthGateway.asmx?WSDL"
     API_END_POINT = "https://getigateway.eftchecks.com/webservices/authgateway.asmx?WSDL"
 
-    attr_accessor :user_name, :password, :certification_user_name, :certification_password
+    attr_accessor :user_name, :password, :production
 
     PROCESS_SINGLE_CERTIFICATION_CHECK = <<xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -69,7 +96,6 @@ xml
 </soap:Envelope>
 xml
 
-
     def client
       ::Savon.client(wsdl: Paya::API_END_POINT, headers: {UserName: Paya.user_name, Password: Paya.password})
     end
@@ -78,6 +104,9 @@ xml
       ::Savon.client(wsdl: Paya::CERTITICATION_API_END_POINT, headers: {UserName: Paya.certification_user_name, Password: Paya.certification_password})
     end
 
+    def test_mode
+      !production
+    end
 
   end
 end
