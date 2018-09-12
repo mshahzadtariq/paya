@@ -25,7 +25,25 @@ module Paya
         end
 
         def process options={}, check_verification=false, identity_verification=false, dl_required=false
-
+          if check_verification == false and identity_verification == false and dl_required == false
+            check_no_verification_dl_optional options
+          elsif check_verification == false and identity_verification == false and dl_required == true
+            check_no_verification_dl_required options
+          elsif check_verification == true and identity_verification == true and dl_required == false
+            check_verification_identity_verification_dl_optional options
+          elsif check_verification == true and identity_verification == true and dl_required == true
+            check_verification_identity_verification_dl_required options
+          elsif check_verification == true and identity_verification == false and dl_required == false
+            check_verification_only_dl_optional options
+          elsif check_verification == true and identity_verification == false and dl_required == true
+            check_verification_only_dl_required options
+          elsif check_verification == false and identity_verification == true and dl_required == false
+            identity_verification_only_dl_optional options
+          elsif check_verification == false and identity_verification == true and dl_required == true
+            identity_verification_only_dl_required options
+          else
+            raise "Transaction not supported"
+          end
         end
 
         def check_no_verification_dl_optional options={}
