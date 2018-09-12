@@ -24,7 +24,7 @@ module Paya
     def process_single_actual_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
+      xml = Paya::PROCESS_SINGLE_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
       response = Paya.client.call(:process_single_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_check_response][:process_single_check_result])
       {request: xml, response: response}
@@ -33,7 +33,7 @@ module Paya
     def process_single_certification_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
+      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
       response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}
@@ -42,7 +42,7 @@ module Paya
     def process_single_actual_check_with_token options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
+      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
       response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}
@@ -51,7 +51,7 @@ module Paya
     def process_single_certification_check_with_token options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
+      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
       response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}

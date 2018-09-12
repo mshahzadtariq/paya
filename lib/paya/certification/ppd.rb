@@ -20,7 +20,6 @@ module Paya
             options = build_options amount, ROUTING_NUMBERS[index], identifier
             paya = Paya::Base.new
             log << paya.process_single_certification_check(options, terminal_id, identifier)
-
           end
         end
         log
