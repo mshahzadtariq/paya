@@ -6,6 +6,7 @@ module Paya
         attr_accessor :request_id, :transaction_id, :routing_number, :account_number, :account_type, :company_name, :address_1, :address_2, :city, :state, :dl_state, :dl_number, :dob_year, :zip, :phone_number, :check_amount , :identifier
 
         def initialize options={}
+          @options = options
           @request_id = options[:request_id]
           @transaction_id = options[:transaction_id]
           @routing_number = options[:routing_number]
@@ -25,58 +26,58 @@ module Paya
           @identifier = options[:identifier]
         end
 
-        def process options={}, check_verification=false, identity_verification=false, dl_required=false
+        def process check_verification=false, identity_verification=false, dl_required=false
           if check_verification == false and identity_verification == false and dl_required == false
-            check_no_verification_dl_optional options
+            check_no_verification_dl_optional
           elsif check_verification == false and identity_verification == false and dl_required == true
-            check_no_verification_dl_required options
+            check_no_verification_dl_required
           elsif check_verification == true and identity_verification == true and dl_required == false
-            check_verification_identity_verification_dl_optional options
+            check_verification_identity_verification_dl_optional
           elsif check_verification == true and identity_verification == true and dl_required == true
-            check_verification_identity_verification_dl_required options
+            check_verification_identity_verification_dl_required
           elsif check_verification == true and identity_verification == false and dl_required == false
-            check_verification_only_dl_optional options
+            check_verification_only_dl_optional
           elsif check_verification == true and identity_verification == false and dl_required == true
-            check_verification_only_dl_required options
+            check_verification_only_dl_required
           elsif check_verification == false and identity_verification == true and dl_required == false
-            identity_verification_only_dl_optional options
+            identity_verification_only_dl_optional
           elsif check_verification == false and identity_verification == true and dl_required == true
-            identity_verification_only_dl_required options
+            identity_verification_only_dl_required
           else
             raise "Transaction not supported"
           end
         end
 
-        def check_no_verification_dl_optional options={}
-          process_single_check options, 1910, 'R'
+        def check_no_verification_dl_optional
+          process_single_check @options, 1910, 'R'
         end
 
-        def check_no_verification_dl_required options={}
-          process_single_check options, 1911, 'R'
+        def check_no_verification_dl_required
+          process_single_check @options, 1911, 'R'
         end
 
-        def check_verification_identity_verification_dl_optional options={}
-          process_single_check options, 1912, 'R'
+        def check_verification_identity_verification_dl_optional
+          process_single_check @options, 1912, 'R'
         end
 
-        def check_verification_identity_verification_dl_required options={}
-          process_single_check options, 1913, 'R'
+        def check_verification_identity_verification_dl_required
+          process_single_check @options, 1913, 'R'
         end
 
-        def check_verification_only_dl_optional options={}
-          process_single_check options, 1914, 'R'
+        def check_verification_only_dl_optional
+          process_single_check @options, 1914, 'R'
         end
 
-        def check_verification_only_dl_required options={}
-          process_single_check options, 1915, 'R'
+        def check_verification_only_dl_required
+          process_single_check @options, 1915, 'R'
         end
 
-        def identity_verification_only_dl_optional options={}
-          process_single_check options, 1916, 'R'
+        def identity_verification_only_dl_optional
+          process_single_check @options, 1916, 'R'
         end
 
-        def identity_verification_only_dl_required options={}
-          process_single_check options, 1917, 'R'
+        def identity_verification_only_dl_required
+          process_single_check @options, 1917, 'R'
         end
 
       end
