@@ -21,8 +21,6 @@ module Paya
     alias_method :get_archived, :get_archived_response
     alias_method :archived_response, :get_archived_response
 
-    protected
-
     def process_single_actual_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)

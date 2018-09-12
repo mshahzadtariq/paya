@@ -1,7 +1,7 @@
 require 'savon'
 require 'paya/base'
 
-require 'paya/certification/base'
+require 'paya/certification'
 require 'paya/certification/ccd'
 require 'paya/certification/ppd'
 require 'paya/certification/tel'
@@ -9,23 +9,23 @@ require 'paya/certification/web'
 
 require 'paya/ccd/guaranteed/credit_debit_transaction'
 require 'paya/ccd/guaranteed/debit_transaction'
-require 'paya/ccd/guaranteed/credit_debit_transaction'
-require 'paya/ccd/guaranteed/debit_transaction'
+require 'paya/ccd/non_guaranteed/credit_debit_transaction'
+require 'paya/ccd/non_guaranteed/debit_transaction'
 
 require 'paya/ppd/guaranteed/credit_debit_transaction'
 require 'paya/ppd/guaranteed/debit_transaction'
-require 'paya/ppd/guaranteed/credit_debit_transaction'
-require 'paya/ppd/guaranteed/debit_transaction'
+require 'paya/ppd/non_guaranteed/credit_debit_transaction'
+require 'paya/ppd/non_guaranteed/debit_transaction'
 
 require 'paya/tel/guaranteed/credit_debit_transaction'
 require 'paya/tel/guaranteed/debit_transaction'
-require 'paya/tel/guaranteed/credit_debit_transaction'
-require 'paya/tel/guaranteed/debit_transaction'
+require 'paya/tel/non_guaranteed/credit_debit_transaction'
+require 'paya/tel/non_guaranteed/debit_transaction'
 
 require 'paya/web/guaranteed/credit_debit_transaction'
 require 'paya/web/guaranteed/debit_transaction'
-require 'paya/web/guaranteed/credit_debit_transaction'
-require 'paya/web/guaranteed/debit_transaction'
+require 'paya/web/non_guaranteed/credit_debit_transaction'
+require 'paya/web/non_guaranteed/debit_transaction'
 
 
 module Paya

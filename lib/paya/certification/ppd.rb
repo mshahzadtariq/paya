@@ -1,9 +1,12 @@
 
 module Paya
   module Certification
-    class Ppd < Base
+    class Ppd
 
       TERMINAL_IDS = [1810, 1811, 1814, 1815, 1812, 1813, 1817, 1816]
+      ROUTING_NUMBERS = [490000018, 490000018, 490000034, 490000018, 490000018]
+      AMOUNTS = [1.50, -10.50, 1.84, 16.79, 1.50]
+      IDENTIFIERS = {0 => 'R', 1 => 'R', 2 => 'R', 3 => 'V', 4 => 'F'}
 
       def initialize
         #ToDo
@@ -15,7 +18,7 @@ module Paya
           AMOUNTS.each_with_index do |amount, index|
             identifier = IDENTIFIERS[index]
             options = build_options amount, ROUTING_NUMBERS[index], identifier
-            paya = LocalHires::Paya::Ppd.new
+            paya = Paya::Base.new
             log << paya.process_single_certification_check(options, terminal_id, identifier)
 
           end

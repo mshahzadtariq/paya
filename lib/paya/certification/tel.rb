@@ -1,7 +1,7 @@
 
 module Paya
   module Certification
-    class Tel < Base
+    class Tel
 
       ROUTING_NUMBERS = [490000018, 490000034, 490000018, 490000018]
       TERMINAL_IDS = [1210, 1211, 1214, 1215, 1212, 1213, 1217, 1216]
@@ -18,7 +18,7 @@ module Paya
           AMOUNTS.each_with_index do |amount, index|
             identifier = IDENTIFIERS[index]
             options = build_options amount, ROUTING_NUMBERS[index], identifier
-            paya = LocalHires::Paya::Tel.new
+            paya = Paya::Base.new
             pscc = paya.process_single_certification_check options, terminal_id, identifier
             log << pscc
           end

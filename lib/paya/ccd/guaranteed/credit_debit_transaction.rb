@@ -63,8 +63,6 @@ module Paya
 
       end
 
-
     end
-
   end
 end
