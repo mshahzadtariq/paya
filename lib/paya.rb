@@ -93,8 +93,6 @@ xml
 xml
 
   class << self
-
-
     attr_accessor :user_name, :password, :production
 
     def client

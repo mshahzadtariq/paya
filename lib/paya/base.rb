@@ -1,6 +1,16 @@
 module Paya
   class Base
 
+    def process_payment options, type=:ccd, guaranteed=true, debit_only=true, check_verification=false, identity_verification=false, dl_required=false
+      type = type.to_s.capitalize
+      sub_type = guaranteed ? 'Guaranteed' : 'NonGuaranteed'
+      payment_type = debit_only ? 'DebitTransaction' : 'CreditDebitTransaction'
+
+      handler = "Paya::#{type}::#{sub_type}::#{payment_type}".contantize
+      handler.new options
+      handler.process check_verification, identity_verification, dl_required
+    end
+
     def process_single_check options={}, terminal_id=nil, identifier='R'
       Paya.production == true ? process_single_actual_check(options, terminal_id, identifier) : process_single_certification_check(options, terminal_id, identifier)
     end
@@ -58,6 +68,7 @@ module Paya
     end
 
     def data_packet options={}, identifier
+      identifier = options[:identifier] if options[:identifier].present?
       xml = <<xml
 <AUTH_GATEWAY REQUEST_ID="#{options[:request_id]}">
 <TRANSACTION>
