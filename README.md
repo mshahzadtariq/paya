@@ -1,8 +1,5 @@
 # Paya
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/paya`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is Ruby / Rails wrapper for Paya (https://paya.com/) based ACH payments. This is third party wrapper and not developed by Paya team. This is developed by reading Paya documentation.
 
 ## Installation
 
@@ -22,7 +19,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Generate a new initlizer file paya.rb in config/initializers folder with your paya credentials. To get paya credentials, contact with Paya development team at https://paya.com/developers
+
+    require 'paya'
+    require 'securerandom'
+
+    Paya.user_name = "YOUR_USERNAME"
+    Paya.password = "YOUR_PASSWORD"
+    Paya.production = false
+    
+After that, you can process payment according to your requirements.
+
 
 ## Development
 
