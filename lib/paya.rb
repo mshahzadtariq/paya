@@ -63,11 +63,11 @@ xml
 </AuthGatewayHeader>
 </soap:Header>
 <soap:Body>
-<ProcessSingleCheck xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
+<ProcessSingleCertificationCheck xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
 <DataPacket>
 &&&DATA_PACKET&&&
 </DataPacket>
-</ProcessSingleCheck>
+</ProcessSingleCertificationCheck>
 </soap:Body>
 </soap:Envelope>
 xml
