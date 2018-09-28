@@ -93,6 +93,7 @@ xml
 xml
 
   class << self
+    attr_accessor :configuration
 
     def client
       test_mode ? sandbox_client : live_client
