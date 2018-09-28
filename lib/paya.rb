@@ -93,7 +93,6 @@ xml
 xml
 
   class << self
-    attr_accessor :user_name, :password, :production
 
     def client
       test_mode ? sandbox_client : live_client
@@ -112,4 +111,19 @@ xml
     end
 
   end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :user_name, :password, :production, :ccd_terminal_id, :ppd_terminal_id, :tel_terminal_id, :web_terminal_id
+
+    def initialize
+      @production = false
+    end
+  end
+
+
 end
