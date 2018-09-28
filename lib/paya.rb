@@ -108,7 +108,7 @@ xml
     end
 
     def test_mode
-      !production
+      !Paya.configuration.production
     end
 
   end
