@@ -63,11 +63,11 @@ xml
 </AuthGatewayHeader>
 </soap:Header>
 <soap:Body>
-<ProcessSingleCertificationCheck xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
+<ProcessSingleCheck xmlns="http://tempuri.org/GETI.eMagnus.WebServices/AuthGateway">
 <DataPacket>
 &&&DATA_PACKET&&&
 </DataPacket>
-</ProcessSingleCertificationCheck>
+</ProcessSingleCheck>
 </soap:Body>
 </soap:Envelope>
 xml
@@ -96,10 +96,14 @@ xml
     attr_accessor :user_name, :password, :production
 
     def client
+      test_mode ? sandbox_client : live_client
+    end
+
+    def live_client
       ::Savon.client(wsdl: Paya::API_END_POINT)
     end
 
-    def certification_client
+    def sandbox_client
       ::Savon.client(wsdl: Paya::CERTITICATION_API_END_POINT)
     end
 

@@ -12,60 +12,46 @@ module Paya
     end
 
     def process_single_check options={}, terminal_id=nil, identifier='R'
-      Paya.production == true ? process_single_actual_check(options, terminal_id, identifier) : process_single_certification_check(options, terminal_id, identifier)
-    end
-
-    def process_single_check_with_token
-      Paya.production == true ? process_single_actual_check_with_token(options, terminal_id, identifier) : process_single_certification_check_with_token(options, terminal_id, identifier)
-    end
-
-    def get_archived_response request_id
-      @terminal_id = terminal_id.to_s
-      xml = Paya::GET_ARCHIVED_RESPONSE.gsub("&&&REQUEST_ID&&&", request_id).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
-      response = Paya.client.call(:get_archived_response, xml: xml)
-      response = Hash.from_xml(response.body[:get_archived_response])
-      {request: xml, response: response}
-    end
-
-    alias_method :archived, :get_archived_response
-    alias_method :get_archived, :get_archived_response
-    alias_method :archived_response, :get_archived_response
-
-    def process_single_actual_check options={}, terminal_id=nil, identifier='R'
+=begin
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
       xml = Paya::PROCESS_SINGLE_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
       response = Paya.client.call(:process_single_certification_check, xml: xml)
-      response = Hash.from_xml(response.body[:process_single_check_response][:process_single_check_result])
-      {request: xml, response: response}
+      response_hash = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_check_result])
+      {request: xml, response: response_hash}
+=end
+      process_single_certification_check options, terminal_id, identifier
+    end
+
+    def process_single_check_with_token
+      @terminal_id = terminal_id.to_s
+      @data_packet = data_packet(options, identifier)
+      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
+      response = Paya.client.call(:process_single_certification_check, xml: xml)
+      response_hash = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
+      {request: xml, response: response_hash}
     end
 
     def process_single_certification_check options={}, terminal_id=nil, identifier='R'
       @terminal_id = terminal_id.to_s
       @data_packet = data_packet(options, identifier)
       xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
-      response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
+      response = Paya.client.call(:process_single_certification_check, xml: xml)
       response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
       {request: xml, response: response}
     end
 
-    def process_single_actual_check_with_token options={}, terminal_id=nil, identifier='R'
+    def get_archived_response request_id
       @terminal_id = terminal_id.to_s
-      @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
-      response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
-      response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
-      {request: xml, response: response}
+      xml = Paya::GET_ARCHIVED_RESPONSE.gsub("&&&REQUEST_ID&&&", request_id).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD", Paya.password)
+      response = Paya.client.call(:get_archived_response, xml: xml)
+      response_hash = Hash.from_xml(response.body[:get_archived_response])
+      {request: xml, response: response_hash}
     end
 
-    def process_single_certification_check_with_token options={}, terminal_id=nil, identifier='R'
-      @terminal_id = terminal_id.to_s
-      @data_packet = data_packet(options, identifier)
-      xml = Paya::PROCESS_SINGLE_CERTIFICATION_CHECK.gsub("&&&DATA_PACKET&&&", @data_packet).gsub("&&&TERMINAL_ID&&&", @terminal_id).gsub("&&&USER_NAME&&&", Paya.user_name).gsub("&&&PASSWORD&&&", Paya.password)
-      response = Paya.certification_client.call(:process_single_certification_check, xml: xml)
-      response = Hash.from_xml(response.body[:process_single_certification_check_response][:process_single_certification_check_result])
-      {request: xml, response: response}
-    end
+    alias_method :archived, :get_archived_response
+    alias_method :get_archived, :get_archived_response
+    alias_method :archived_response, :get_archived_response
 
     def data_packet options={}, identifier
       identifier = options[:identifier] if options[:identifier].present?
