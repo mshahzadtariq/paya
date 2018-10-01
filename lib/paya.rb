@@ -1,4 +1,5 @@
 require 'savon'
+require 'paya/configuration'
 require 'paya/base'
 
 require 'paya/certification'
@@ -117,6 +118,5 @@ xml
     self.configuration ||= Configuration.new
     yield(configuration)
   end
-
 
 end
