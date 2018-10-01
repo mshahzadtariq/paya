@@ -49,35 +49,35 @@ module Paya
         end
 
         def check_no_verification_dl_optional
-          process_single_check @options, 1910, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_no_verification_dl_optional_terminal_id, 'R'
         end
 
         def check_no_verification_dl_required
-          process_single_check @options, 1911, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_no_verification_dl_required_terminal_id, 'R'
         end
 
         def check_verification_identity_verification_dl_optional
-          process_single_check @options, 1912, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_verification_identity_verification_dl_optional_terminal_id, 'R'
         end
 
         def check_verification_identity_verification_dl_required
-          process_single_check @options, 1913, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_verification_identity_verification_dl_required_terminal_id, 'R'
         end
 
         def check_verification_only_dl_optional
-          process_single_check @options, 1914, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_verification_only_dl_optional_terminal_id, 'R'
         end
 
         def check_verification_only_dl_required
-          process_single_check @options, 1915, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_check_verification_only_dl_required_terminal_id, 'R'
         end
 
         def identity_verification_only_dl_optional
-          process_single_check @options, 1916, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id, 'R'
         end
 
         def identity_verification_only_dl_required
-          process_single_check @options, 1917, 'R'
+          process_single_check @options, Paya.configuration.ccd_guaranteed_credit_debit_identity_verification_only_dl_required_terminal_id, 'R'
         end
 
       end

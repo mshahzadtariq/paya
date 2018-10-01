@@ -118,13 +118,5 @@ xml
     yield(configuration)
   end
 
-  class Configuration
-    attr_accessor :user_name, :password, :production, :ccd_terminal_id, :ppd_terminal_id, :tel_terminal_id, :web_terminal_id
-
-    def initialize
-      @production = false
-    end
-  end
-
 
 end

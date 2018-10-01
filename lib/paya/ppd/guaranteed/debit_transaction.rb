@@ -48,35 +48,35 @@ module Paya
         end
 
         def check_no_verification_dl_optional
-          process_single_check @options, 1010, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id, 'R'
         end
 
         def check_no_verification_dl_required
-          process_single_check @options, 1011, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_no_verification_dl_required_terminal_id, 'R'
         end
 
         def check_verification_identity_verification_dl_optional
-          process_single_check @options, 1012, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_verification_identity_verification_dl_optional_terminal_id, 'R'
         end
 
         def check_verification_identity_verification_dl_required
-          process_single_check @options, 1013, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_verification_identity_verification_dl_required_terminal_id, 'R'
         end
 
         def check_verification_only_dl_optional
-          process_single_check @options, 1014, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id, 'R'
         end
 
         def check_verification_only_dl_required
-          process_single_check @options, 1015, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_check_verification_only_dl_required_terminal_id, 'R'
         end
 
         def identity_verification_only_dl_optional
-          process_single_check @options, 1016, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id, 'R'
         end
 
         def identity_verification_only_dl_required
-          process_single_check @options, 1017, 'R'
+          process_single_check @options, Paya.configuration.ppd_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id, 'R'
         end
 
       end
