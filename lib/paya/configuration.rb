@@ -15,7 +15,7 @@ module Paya
                   :ccd_guaranteed_credit_debit_check_verification_only_dl_optional_terminal_id,
                   :ccd_guaranteed_credit_debit_check_verification_only_dl_required_terminal_id,
                   :ccd_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
-                  :ccd_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
+                  :ccd_guaranteed_credit_debit_identity_verification_only_dl_required_terminal_id,
 
                   :ccd_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :ccd_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -24,7 +24,7 @@ module Paya
                   :ccd_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :ccd_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :ccd_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :ccd_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :ccd_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :ccd_non_guaranteed_credit_debit_check_no_verification_dl_optional_terminal_id,
                   :ccd_non_guaranteed_credit_debit_check_no_verification_dl_required_terminal_id,
@@ -33,7 +33,7 @@ module Paya
                   :ccd_non_guaranteed_credit_debit_check_verification_only_dl_optional_terminal_id,
                   :ccd_non_guaranteed_credit_debit_check_verification_only_dl_required_terminal_id,
                   :ccd_non_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
-                  :ccd_non_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
+                  :ccd_non_guaranteed_credit_debit_identity_verification_only_dl_required_terminal_id,
 
                   :ccd_non_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :ccd_non_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -42,7 +42,7 @@ module Paya
                   :ccd_non_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :ccd_non_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :ccd_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :ccd_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :ccd_non_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :ppd_guaranteed_credit_debit_check_no_verification_dl_optional_terminal_id,
                   :ppd_guaranteed_credit_debit_check_no_verification_dl_required_terminal_id,
@@ -51,7 +51,7 @@ module Paya
                   :ppd_guaranteed_credit_debit_check_verification_only_dl_optional_terminal_id,
                   :ppd_guaranteed_credit_debit_check_verification_only_dl_required_terminal_id,
                   :ppd_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
-                  :ppd_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
+                  :ppd_guaranteed_credit_debit_identity_verification_only_dl_required_terminal_id,
 
                   :ppd_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :ppd_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -60,7 +60,7 @@ module Paya
                   :ppd_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :ppd_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :ppd_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :ppd_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :ppd_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :ppd_non_guaranteed_credit_debit_check_no_verification_dl_optional_terminal_id,
                   :ppd_non_guaranteed_credit_debit_check_no_verification_dl_required_terminal_id,
@@ -69,7 +69,7 @@ module Paya
                   :ppd_non_guaranteed_credit_debit_check_verification_only_dl_optional_terminal_id,
                   :ppd_non_guaranteed_credit_debit_check_verification_only_dl_required_terminal_id,
                   :ppd_non_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
-                  :ppd_non_guaranteed_credit_debit_identity_verification_only_dl_optional_terminal_id,
+                  :ppd_non_guaranteed_credit_debit_identity_verification_only_dl_required_terminal_id,
 
                   :ppd_non_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :ppd_non_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -78,7 +78,7 @@ module Paya
                   :ppd_non_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :ppd_non_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :ppd_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :ppd_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :ppd_non_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :tel_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :tel_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -87,7 +87,7 @@ module Paya
                   :tel_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :tel_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :tel_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :tel_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :tel_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :tel_non_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :tel_non_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -96,7 +96,7 @@ module Paya
                   :tel_non_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :tel_non_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :tel_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :tel_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
+                  :tel_non_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id,
 
                   :web_non_guaranteed_debit_only_check_no_verification_dl_optional_terminal_id,
                   :web_non_guaranteed_debit_only_check_no_verification_dl_required_terminal_id,
@@ -105,7 +105,7 @@ module Paya
                   :web_non_guaranteed_debit_only_check_verification_only_dl_optional_terminal_id,
                   :web_non_guaranteed_debit_only_check_verification_only_dl_required_terminal_id,
                   :web_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id,
-                  :web_non_guaranteed_debit_only_identity_verification_only_dl_optional_terminal_id
+                  :web_non_guaranteed_debit_only_identity_verification_only_dl_required_terminal_id
 
     def initialize
       @production = false
